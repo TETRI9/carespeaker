@@ -3,7 +3,7 @@ import ollama
 import whisper
 import os
 from gtts import gTTS
-
+client_ollama = ollama.Client(host="http://ollama-core:11434")
 # Configuración visual de la Startup
 st.set_page_config(page_title="CareSpeaker AI", page_icon="👵", layout="centered")
 
@@ -77,7 +77,7 @@ if audio_recibido and not st.session_state.paso_completado:
                 f"You are a computer translation API. Translate the user input into {idiomas_nombres[idioma_seleccionado]}. "
                 "Output ONLY the raw translated words. Never reply in Spanish. Do not add notes."
             )
-            response = ollama.chat(
+            response = client_ollama.chat(
                 model='llama3.1',
                 messages=[
                     {'role': 'system', 'content': prompt_sistema},

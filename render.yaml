@@ -1,0 +1,5 @@
+services:
+- type: web
+name: carespeaker-app
+env: python
+startCommand: streamlit run main.py
